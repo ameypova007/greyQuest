@@ -51,15 +51,12 @@ def showMemes(request):
     jsons = r.json()
     print(jsons["data"]["memes"][0:5])
     # return render(request,'users/showJokes.html',context = {"data":jsons["data"]["memes"][0:5]})
-    return render(request,['users/showJokes.html','users/show.html'],context = {"data":jsons["data"]["memes"][0:5]})
+    return render(request,'users/showJokes.html',context = {"data":jsons["data"]["memes"][0:5]})
 
-# @login_required
-# def checkCookies(request):
-#     return render(request,'users/show.html')
 
 @login_required
 def confirmationPage(request):
-    return render(request,'users/show.html')
+    return render(request,'users/confirm.html')
 
 
 
