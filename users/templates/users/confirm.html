@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<html>
+<head>
+	<title>Cookie!!!</title>
+	<body>
+		 <div class="border-top pt-3">
+            <small class="text-muted">
+                Can we accept the cookies !! <a class="ml-2" href="{% url 'showMemes' %}">Can we accpet?</a>
+            </small>
+           
+        </div>
+        <div>
+        	 <small class="text-muted">
+                or we cannot <a class="ml-2" href="{% url 'logout' %}">Byeee</a>
+            </small>
+        </div>
+
+
+<p id="demo"></p>
+<span id="countdown">10</span>
+<script>
+var seconds = document.getElementById("countdown").textContent;
+var countdown = setInterval(function() {
+    seconds--;
+    document.getElementById("countdown").textContent = seconds;
+    if (seconds <= 0) {
+    	window.location.href='/logout';
+    }
+}, 1000);
+</script>
+
+
+	</body>
+</head> 
+</html>
+
+{% endblock content %}
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<html>
+<head>
+	<title>Cookie!!!</title>
+	<script type="text/javascript">
+		function createCookie(cookieName,cookieValue,daysToExpire)
+        {
+          var date = new Date();
+          date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+          document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+        }
+		function accessCookie(cookieName)
+        {
+          var name = cookieName + "=";
+          var allCookieArray = document.cookie.split(';');
+          for(var i=0; i<allCookieArray.length; i++)
+          {
+            var temp = allCookieArray[i].trim();
+            if (temp.indexOf(name)==0)
+            return temp.substring(name.length,temp.length);
+       	  }
+        	return "";
+        }
+		function checkCookie()
+        {
+          var user = accessCookie("testCookie");
+          if (user!="")
+        	alert("Welcome Back " + user + "!!!");
+          else
+          {
+            user = "amey"
+            num = 7
+            if (user!="" && user!=null)
+            {
+            createCookie("testCookie", "ameym", 1);
+            }
+          }
+        }
+        function listCookies() {
+	    var theCookies = document.cookie.split(';');
+	    var aString = '';
+	    for (var i = 1 ; i <= theCookies.length; i++) {
+	        aString += i + ' ' + theCookies[i-1] + "\n";
+	    }
+	    alert( aString);
+}
+function delete_cookie() {
+  document.cookie = "ameym" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+	</script>
+</head>
+
+<div class="border-top pt-3">
+            <small class="text-muted">
+                logout <a class="ml-2" href="{% url 'logout' %}" onclick="delete_cookie()" >logout</a>
+            </small>
+            <small class="text-muted">
+                 <a class="ml-2" href="{% url 'showMemes' %}">U can see memes now</a>
+            </small>
+        </div>
+
+<body onload="listCookies()" href="{% url 'showMemes' %}"></body>
+</html>
+
+{% endblock content %}
